@@ -7,8 +7,6 @@ from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 
-# 10000 data -> 300 epoch
-# 50000 data -> 1000 epoch
 @click.command()
 @click.option('--filename', default='data-11757.csv', help='Data source')
 @click.option('--dr', default=None, help='Number of data to be processed.')
