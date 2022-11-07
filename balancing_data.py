@@ -13,11 +13,13 @@ from sklearn.metrics import confusion_matrix
 def balancing_data(dr, lr):
   # read data from credit card master file
   filepath = (os.path.join('./dataset/', 'creditcard.csv'))
-  if dr is None:
+  if dr is None:    
     df_cc = pd.read_csv(filepath, delimiter=',')    
+    dr = len(df_cc)
   else:
     df_cc = pd.read_csv(filepath, delimiter=',', nrows = int(dr)) 
 
+  print("Dataset: ", len(df_cc))
   epoch_time = int(time.time())
   # split dataframe credit card into 2 classes
   # fraud and not fraud
@@ -63,7 +65,7 @@ def balancing_data(dr, lr):
 
   # confusion matrix
   cm = confusion_matrix(y_test, y_pred)
-  print(cm)
+  # print(cm)
   
   # accuracy, precision and recall information
   accuracy = metrics.accuracy_score(y_test, y_pred)
@@ -81,7 +83,7 @@ def balancing_data(dr, lr):
     ):
     df_new = pd.concat([df_upsampled_training, df_test])
     df_new.to_csv('dataset/new/data-' + str(len(df_new)) + '.csv')
-    print("Save to file")
+    print("Saved to file")
 
 if __name__ == '__main__':
   balancing_data()
